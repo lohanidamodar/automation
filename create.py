@@ -12,11 +12,11 @@ password = '' #your password
 
 def create():
     folderName = str(sys.argv[1])
-    os.makedirs(path + str(sys.argv[1]))
+    # os.makedirs(path + str(sys.argv[1]))
     python_button = browser.find_elements_by_xpath("//input[@name='login']")[0]
     python_button.send_keys(username) 
     python_button = browser.find_elements_by_xpath("//input[@name='password']")[0] 
-    python_button.send_keys(password)
+    python_button.send_keys(sys.argv[2])
     python_button = browser.find_elements_by_xpath("//input[@name='commit']")[0]
     python_button.click()
     browser.get('https://github.com/new') 
