@@ -16,8 +16,7 @@ def add_key_to_manifest():
 def setup_api_key():
     print("setting up api key metadata")
     with open(stringsPath,'w') as file:
-        file.writelines("""
-<?xml version="1.0" encoding="utf-8"?>
+        file.writelines("""<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="map_api_key">YOUR_API_KEY</string>
 </resources>        

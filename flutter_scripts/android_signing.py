@@ -1,5 +1,6 @@
 import subprocess
 import sys
+from commons import *
 
 def create_key_properties(keyAlias):
     with open('./android/key.properties',"w") as keyfile:
@@ -12,8 +13,8 @@ storeFile=../../keys/keystore.jks
 
 def configure_build_config():
     print("configuring release config")
-    readfile=open("./android/app/build.gradle","r").readlines()
-    temp = open("./android/app/build.gradle",'w')
+    readfile=open(appBuildPath,"r").readlines()
+    temp = open(appBuildPath,'w')
     for line in readfile:
         if("android {" in line):
             temp.writelines("""

@@ -1,22 +1,20 @@
 # This script adds firebase auth, google auth and required methods to flutter
 import os
 from distutils.dir_util import copy_tree
+from commons import *
 
+firebaseAuthDependencies="  firebase_auth: ^0.11.1+7\n  google_sign_in: ^4.0.2\n  provider: ^3.0.0+1\n\n"
+gradlePropertiesPath="./android/gradle.properties"
 
 def add_firebase_auth():
     print("adding firebase auth")
-    readfile=open("./pubspec.yaml","r").readlines()
-    temp = open("./pubspec.yaml",'w')
-    for line in readfile:
-        if("dev_dependencies:" in line):
-            temp.writelines("  firebase_auth: ^0.11.1+7\n  google_sign_in: ^4.0.2\n  provider: ^3.0.0+1\n\n")
-        temp.writelines(line)
+    general_find_add_after(file=pubspecPath,beforeLine="dev_dependencies",linesToAdd=firebaseAuthDependencies)
     print("added firebase auth, google sign in and provider package")
 
 def add_google_services():
     print("adding google services")
-    readfile=open("./android/build.gradle","r").readlines()
-    temp = open("./android/build.gradle",'w')
+    readfile=open(projectBuildPath,"r").readlines()
+    temp = open(projectBuildPath,'w')
     for line in readfile:
         temp.writelines(line)
         if("dependencies" in line):
@@ -40,18 +38,16 @@ def copying_files():
 def upgrade_to_androidx():
     print("upgrading to android x")
     needs_upgrade = True
-    with open("./android/gradle.properties","r+") as file:
-        content = file.readlines()
-        file.seek(0)
-        if("android.useAndroidX=true" in line for line in content):
+    with open(gradlePropertiesPath,"r+") as file:
+        if("android.useAndroidX=true" in file.read()):
             needs_upgrade = False
             print("Already using androidx")
         else:
             file.write("\nandroid.enableJetifier=true\nandroid.useAndroidX=true\n")
     file.close()
     if(needs_upgrade):
-        readfile = open("./android/app/build.gradle","r").readlines()
-        temp = open("./android/app/build.gradle","w")
+        readfile = open(appBuildPath,"r").readlines()
+        temp = open(appBuildPath,"w")
         for line in readfile:
             if("testInstrumentationRunner" in line):
                 temp.writelines("        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\n")
