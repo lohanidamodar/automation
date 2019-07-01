@@ -3,7 +3,8 @@ import os
 from distutils.dir_util import copy_tree
 from commons import *
 
-firebaseAuthDependencies="  firebase_auth: ^0.11.1+7\n  google_sign_in: ^4.0.2\n  provider: ^3.0.0+1\n\n"
+envs = getEnv()
+firebaseAuthDependencies=f"  firebase_auth: ^{envs['FIREBASE_AUTH']}\n  google_sign_in: ^{envs['GOOGLE_SIGN_IN']}\n  provider: ^{envs['PROVIDER']}\n\n"
 gradlePropertiesPath="./android/gradle.properties"
 
 def add_firebase_auth():
@@ -18,7 +19,7 @@ def add_google_services():
     for line in readfile:
         temp.writelines(line)
         if("dependencies" in line):
-            temp.writelines("        classpath 'com.google.gms:google-services:4.2.0'\n")
+            temp.writelines(f"        classpath 'com.google.gms:google-services:{envs['GOOGLE_SERVICES']}'\n")
     temp.close()
 
     with open("./android/app/build.gradle","a") as file:

@@ -1,12 +1,14 @@
 from commons import *
 
-googleMapPlugin = "  google_maps_flutter: ^0.5.19\n\n"
+envs = getEnv()
+
+googleMapPlugin = f"  google_maps_flutter: ^{envs['GOOGLE_MAPS']}\n\n"
 mapApiKey="        <meta-data android:name=\"com.google.android.geo.API_KEY\" android:value=\"@string/map_api_key\"/>"
 
 def add_google_map():
     print("adding google map")
     general_find_add_after(file=pubspecPath,beforeLine="dev_dependencies",linesToAdd=googleMapPlugin)
-    print("added google maps plugin 0.5.19")
+    print(f"added google maps plugin {envs['GOOGLE_MAPS']}")
 
 def add_key_to_manifest():
     print("adding key to manifest")
