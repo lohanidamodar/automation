@@ -53,9 +53,9 @@ def upgrade_to_androidx():
             if("testInstrumentationRunner" in line):
                 temp.writelines("        testInstrumentationRunner \"androidx.test.runner.AndroidJUnitRunner\"\n")
             elif("androidTestImplementation 'com.android.support.test:runner" in line):
-                temp.writelines("    androidTestImplementation 'androidx.test:runner:1.1.0'\n")
+                temp.writelines("    androidTestImplementation 'androidx.test:runner:1.1.1'\n")
             elif("androidTestImplementation 'com.android.support.test.espresso:espresso-core" in line):
-                temp.writelines("    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'\n")
+                temp.writelines("    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'\n")
             else:
                 temp.writelines(line)
 
