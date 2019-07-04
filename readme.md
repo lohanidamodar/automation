@@ -21,7 +21,7 @@ function fcreate() {
 ```
 
 ### running this script
-You need to add the above bash function to your `.bashrc` then you can run the following command and follow the instructions
+You need to add the above bash function to your `.bashrc` then you can run the following command from terminal in your flutter project folder and follow the instructions
 
 ```
 fcreate <name_of_flutter_project>
@@ -93,7 +93,7 @@ function fandsign() {
 ```
 
 ### running this script
-You need to add the above bash function to your `.bashrc` then you can run the following command and follow the instructions
+You need to add the above bash function to your `.bashrc` then you can run the following command from terminal in your flutter project folder and follow the instructions
 
 ```
 fandsign
