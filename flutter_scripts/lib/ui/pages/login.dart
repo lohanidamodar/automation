@@ -26,17 +26,15 @@ class _LoginPageState extends State<LoginPage> {
     final user = Provider.of<UserRepository>(context);
     return Scaffold(
       key: _key,
-      appBar: AppBar(
-        title: Text("Demo"),
-      ),
       body: Form(
         key: _formKey,
-        child: Center(
+        child: Container(
+          alignment: Alignment.center,
           child: ListView(
             shrinkWrap: true,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 child: TextFormField(
                   controller: _email,
                   validator: (value) =>
@@ -45,11 +43,13 @@ class _LoginPageState extends State<LoginPage> {
                   decoration: InputDecoration(
                       prefixIcon: Icon(Icons.email),
                       labelText: "Email",
-                      border: OutlineInputBorder()),
+                      filled: true,
+                      fillColor: Colors.white,
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(30))),
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 child: TextFormField(
                   controller: _password,
                   validator: (value) =>
@@ -58,9 +58,10 @@ class _LoginPageState extends State<LoginPage> {
                   decoration: InputDecoration(
                       prefixIcon: Icon(Icons.lock),
                       labelText: "Password",
-                      border: OutlineInputBorder()),
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(30))),
                 ),
               ),
+              SizedBox(height: 10.0),
               user.status == Status.Authenticating
                   ? Center(child: CircularProgressIndicator())
                   : Padding(
@@ -68,7 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                       child: Material(
                         elevation: 5.0,
                         borderRadius: BorderRadius.circular(30.0),
-                        color: Colors.red,
+                        color: Theme.of(context).primaryColor,
                         child: MaterialButton(
                           onPressed: () async {
                             if (_formKey.currentState.validate()) {
@@ -88,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                     ),
-              SizedBox(height: 20),
+              SizedBox(height: 10),
               user.status == Status.Authenticating
                   ? Center(child: CircularProgressIndicator())
                   : Padding(
