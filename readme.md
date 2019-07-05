@@ -88,7 +88,7 @@ function fandsign() {
 	read keyAlias
 	mkdir keys
 	keytool -genkey -v -keystore ./keys/keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias "$keyAlias"
-	python3 /home/dlohani/Documents/projects/automation/flutter_scripts/android_signing.py "$keyAlias"
+	python3 <path_to_flutter_scripts>/android_signing.py "$keyAlias"
 }
 ```
 
