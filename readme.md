@@ -80,6 +80,8 @@ python3 <path_to_flutter_scripts>/google_maps.py
 ***
 
 ## 5. android_signing.py
+[Youtube Video](https://www.youtube.com/watch?v=vY51GtJ4RlE) describing how to use the script.
+
 This script along with the following bash function automates the process preparing android platform app of flutter for release. It helps you to create keystore, keys and performs all the config setup.
 
 ```
